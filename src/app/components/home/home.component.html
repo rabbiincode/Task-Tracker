@@ -1,90 +1,21 @@
 <div class="min-h-screen bg-gray-100">
-  <mat-toolbar color="primary" class="flex items-center justify-between">
-    <span>Task Tracker</span>
-    <button (click)="setTask('add')" class="text-green-200 text-xl hover:opacity-80">Add task</button>
-  </mat-toolbar>
-
-  <div class="flex flex-wrap items-center justify-between text-2xl font-medium px-4 mb-14">
-    <span>{{greet}}</span>
-    <p class="text-orange-400">No gree for procrastination!</p>
+  <div class="min-h-[88vh]">
+    <div class="bg-blue-600 flex items-center justify-between px-6 py-6">
+      <div class="flex items-center gap-4">
+        <img src="/assets/task.png" alt="img" class="w-[6rem] h-[3rem]"/>
+        <mat-icon>menu</mat-icon>
+      </div>
+      <div class="flex items-center gap-4">
+        <button (click)="setTask('add')" class="text-2xl hover:opacity-80">Add task</button>
+        <button [routerLink]="'/login'" class="text-2xl border-8 border-gray-400 rounded-lg px-6 py-2 hover:opacity-80">Login</button>
+      </div>
+    </div>
+    <div class="flex flex-wrap items-center justify-between font-medium px-4 mb-14">
+      <span class="text-2xl">{{greet}}</span>
+      <p class="text-orange-400 text-2xl">No gree for procrastination!</p>
+    </div>
+    <p class="px-6 mb-12">{{notify}}</p>
+    <task-cards></task-cards>
   </div>
-
-  <div class="flex flex-wrap justify-center gap-12 m-auto">
-    <div (dragover)="onDragOver($event)" (drop)="onDrop($event, 'opened')" class="bg-gray-300 min-w-[30rem] max-w-[30rem] rounded-lg border-b-4 border-r-4 border-blue-400 p-4 pb-8">
-      <p class="text-blue-400 text-xl font-medium">Opened Task(s)</p>
-      <p *ngIf="filterTasks('opened').length == 0" class="text-red-500 text-xl font-medium">No Task Yet</p>
-      <div (dragstart)="onDrag(task)" draggable="true" *ngFor="let task of filterTasks('opened')" class="bg-white flex flex-col gap-4 rounded-lg mt-4">
-        <div class="flex items-center justify-between gap-8 px-4 py-4">
-          <span class="text-xl font-medium">{{task.title}}</span>
-          <div class="flex items-center gap-3">
-            <button (click)="show(task.taskId)" class="text-green-500 cursor-pointer hover:opacity-80 underline">View</button>
-            <button (click)="edit(task)" [disabled]="task.status == 'completed'" class="text-orange-500 cursor-pointer hover:opacity-80 underline">Edit</button>
-            <button [disabled]="task.status == 'completed'" class="text-red-500 cursor-pointer hover:opacity-80 underline">Delete</button>
-          </div>
-        </div>
-        <div [ngClass]="showTask == task.taskId ? 'block bg-yellow-100 px-4 py-4' : 'hidden'">
-          <p>Description - {{task.desc}}</p>
-          <span>Due Date - {{task.dueDate}}</span>
-        </div>
-      </div>
-    </div>
-
-    <div (dragover)="onDragOver($event)" (drop)="onDrop($event, 'pending')" class="bg-gray-300 min-w-[30rem] max-w-[30rem] rounded-lg border-b-4 border-r-4 border-yellow-400 p-4 pb-8">
-      <p class="text-yellow-400 text-xl font-medium">Pending</p>
-      <p *ngIf="filterTasks('pending').length == 0" class="text-red-500 text-xl font-medium">No Task Yet</p>
-      <div (dragstart)="onDrag(task)" draggable="true" *ngFor="let task of filterTasks('pending')" class="bg-white flex flex-col gap-4 rounded-lg mt-4">
-        <div class="flex items-center justify-between gap-8 px-4 py-4">
-          <span class="text-xl font-medium">{{task.title}}</span>
-          <div class="flex items-center gap-3">
-            <button (click)="show(task.taskId)" class="text-green-500 cursor-pointer hover:opacity-80 underline">View</button>
-            <button (click)="edit(task)" [disabled]="task.status == 'completed'" class="text-orange-500 cursor-pointer hover:opacity-80 underline">Edit</button>
-            <button [disabled]="task.status == 'completed'" class="text-red-500 cursor-pointer hover:opacity-80 underline">Delete</button>
-          </div>
-        </div>
-        <div [ngClass]="showTask == task.taskId ? 'block bg-yellow-100 px-4 py-4' : 'hidden'">
-          <p>Description - {{task.desc}}</p>
-          <span>Due Date - {{task.dueDate}}</span>
-        </div>
-      </div>
-    </div>
-
-    <div (dragover)="onDragOver($event)" (drop)="onDrop($event, 'inprogress')" class="bg-gray-300 min-w-[30rem] max-w-[30rem] rounded-lg border-b-4 border-r-4 border-orange-400 p-4 pb-8">
-      <p class="text-orange-400 text-xl font-medium">InProgress</p>
-      <p *ngIf="filterTasks('inprogress').length == 0" class="text-red-500 text-xl font-medium">No Task Yet</p>
-      <div (dragstart)="onDrag(task)" draggable="true" *ngFor="let task of filterTasks('inprogress')" class="bg-white flex flex-col gap-4 rounded-lg mt-4">
-        <div class="flex items-center justify-between gap-8 px-4 py-4">
-          <span class="text-xl font-medium">{{task.title}}</span>
-          <div class="flex items-center gap-3">
-            <button (click)="show(task.taskId)" class="text-green-500 cursor-pointer hover:opacity-80 underline">View</button>
-            <button (click)="edit(task)" [disabled]="task.status == 'completed'" class="text-orange-500 cursor-pointer hover:opacity-80 underline">Edit</button>
-            <button [disabled]="task.status == 'completed'" class="text-red-500 cursor-pointer hover:opacity-80 underline">Delete</button>
-          </div>
-        </div>
-        <div [ngClass]="showTask == task.taskId ? 'block bg-yellow-100 px-4 py-4' : 'hidden'">
-          <p>Description - {{task.desc}}</p>
-          <span>Due Date - {{task.dueDate}}</span>
-        </div>
-      </div>
-    </div>
-
-    <div (dragover)="onDragOver($event)" (drop)="onDrop($event, 'completed')" class="bg-gray-300 min-w-[30rem] max-w-[30rem] rounded-lg border-b-4 border-r-4 border-green-400 p-4 pb-8">
-      <p class="text-green-400 text-xl font-medium">Completed</p>
-      <p *ngIf="filterTasks('completed').length == 0" class="text-red-500 text-xl font-medium">No Task Yet</p>
-      <div (dragstart)="onDrag(task)" draggable="true" *ngFor="let task of filterTasks('completed')" class="bg-white flex flex-col gap-4 rounded-lg mt-4">
-        <div class="flex items-center justify-between gap-8 px-4 py-4">
-          <span class="text-xl font-medium">{{task.title}}</span>
-          <div class="flex items-center gap-3">
-            <button (click)="show(task.taskId)" class="text-green-500 cursor-pointer hover:opacity-80 underline">View</button>
-            <button (click)="edit(task)" [disabled]="task.status == 'completed'" class="text-orange-500 cursor-pointer hover:opacity-80 underline">Edit</button>
-            <button [disabled]="task.status == 'completed'" class="text-red-500 cursor-pointer hover:opacity-80 underline">Delete</button>
-          </div>
-        </div>
-        <div [ngClass]="showTask == task.taskId ? 'block bg-yellow-100 px-4 py-4' : 'hidden'">
-          <p>Description - {{task.desc}}</p>
-          <span>Due Date - {{task.dueDate}}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <app-task *ngIf="add" [choice]="task" [editTask]="editTask" (toggle)="toggleTask()"></app-task>
+  <task-footer></task-footer>
 </div>
