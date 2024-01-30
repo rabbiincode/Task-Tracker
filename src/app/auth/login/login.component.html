@@ -1,4 +1,30 @@
-<div class="relative">
-  <img [routerLink]="'/'" src="/assets/task.png" alt="img" class="absolute top-6 left-6 w-[6rem] h-[3rem] cursor-pointer"/>
-  login
+<div class="login">
+  <img [routerLink]="'/'" src="/assets/logo.png" alt="img" class="logo"/>
+  <div class="content">
+    <form [formGroup]="loginForm" (submit)="loginUser()">
+      <mat-form-field class="email">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="me@mail.com">
+        <mat-icon matSuffix>mail</mat-icon>
+        <mat-error *ngIf="loginForm.value.email == ''">Username or email required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Password">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="loginForm.value.password == ''">Password required</mat-error>
+      </mat-form-field>
+      <div class="recover">
+        <span><input type="checkbox" [checked]="rememberMe" (change)="handleCheckbox()"/> Remember Me</span>
+        <span class="reset">Forgot Password?</span>
+      </div>
+      <button type='submit' [disabled]="loginForm.invalid">
+        <span *ngIf="!loading">Login</span>
+        <span *ngIf="loading" class="load"></span>
+      </button>
+    </form>
+    <button (click)="loginWithGoggle()" class="goggle"><img src="/assets/goggle.png" alt="goggle"/> Continue with google</button>
+    <p [routerLink]="['/register']" class="register">Don’t have an account? Sign up for free</p>
+  </div>
+  <span>Rabbi</span>
 </div>

@@ -3,7 +3,9 @@ import { Task } from '../../interfaces/task';
 import { CommonModule } from '@angular/common';
 import { TaskComponent } from '../task/task.component';
 import { TaskService } from '../../services/task.service';
+import { AuthService } from '../../services/auth.service';
 import { AlertService } from '../../services/alert.service';
+import { UtilitiesService } from '../../services/utilities.service';
 
 @Component({
   selector: 'task-cards',
@@ -14,7 +16,7 @@ import { AlertService } from '../../services/alert.service';
 })
 
 export class CardsComponent{
-  constructor(private alert: AlertService, private taskService: TaskService){}
+  constructor(private alert: AlertService, private auth: AuthService, private taskService: TaskService, private utils: UtilitiesService){}
   add = false
   task = 'add'
   tasks!: Task[]
@@ -22,13 +24,17 @@ export class CardsComponent{
   editTask!: Task
   showTask!: string
   currentTask!: Task
+  notify = 'Drag and drop to move tasks across columns'
 
   ngOnInit (){
+    this.loading = true
     this.taskService.getAllTasks().subscribe(data => {
-      this.tasks = data
+      this.tasks = data?.filter(task => this.auth.username == task.username)
+      this.loading = false
     }, () => {
       // Failed
       this.tasks = []
+      this.loading = false
     })
   }
 
@@ -63,4 +69,5 @@ export class CardsComponent{
     this.taskService.updateTask(this.currentTask.taskId, this.currentTask)
   }
   onDragOver = (event: DragEvent) => event.preventDefault()
+  formatDate = (date: Date) => this.utils.formatDate(date)
 }

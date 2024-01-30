@@ -1,0 +1,15 @@
+<nav class="sticky bg-blue-600 h-14 top-0 flex items-center justify-between px-6 py-4">
+  <div class="flex items-center gap-4">
+    <img [routerLink]="'/'" src="/assets/logo.png" alt="img" class="w-[3rem] h-[3rem] rounded-[50%] cursor-pointer"/>
+    <mat-icon (click)="toggleSidebar()" class="w-[2rem] h-[2rem] text-4xl cursor-pointer">menu</mat-icon>
+  </div>
+  <div class="flex items-center gap-4">
+    <button [routerLink]="'/user'" class="w-fit text-2xl hover:opacity-80">Home</button>
+    <button (click)="setTask()" class="w-fit text-2xl hover:opacity-80">Add task</button>
+    <button (click)="authenticate()" class="w-fit text-2xl border-8 border-gray-400 rounded-lg hover:opacity-80 max-[475px]:hidden">
+      {{isLogin ? 'Logout' : 'Login'}}
+    </button>
+  </div>
+</nav>
+
+<task-sidebar *ngIf="showSidebar" (toggle)="toggleSidebar()"></task-sidebar>

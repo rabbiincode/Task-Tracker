@@ -1,12 +1,11 @@
 <div class="min-h-screen bg-gray-100">
   <div class="min-h-[88vh]">
-    <task-header (addTask)="addTask()"></task-header>
+    <task-header (addTask)="setTask('add')"></task-header>
     <div class="flex flex-wrap items-center justify-between gap-2 font-medium px-4 mb-14">
-      <p class="text-2xl">{{greet}}</p>
+      <p class="text-xl">{{greet}} <span class="text-green-500 text-2xl italic">{{username}}</span></p>
       <p class="text-orange-400 text-2xl">No gree for procrastination!</p>
     </div>
-    <task-all-tasks></task-all-tasks>
+    <task-cards></task-cards>
   </div>
-  <task-task *ngIf="add" [choice]="'add'" (toggle)="addTask()"></task-task>
   <task-footer></task-footer>
 </div>

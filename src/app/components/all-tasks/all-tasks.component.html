@@ -1,0 +1,24 @@
+<div class="reltive min-h-[87vh]">
+  <p class="text-4xl font-medium p-6">All Tasks</p>
+  <div *ngIf="!loading" class="min-h-[87vh] px-6 py-8">
+    <ng-container>
+      <div *ngFor="let task of allTasks" class="bg-white max-w-[1200px] flex flex-col gap-4 m-auto rounded-lg border-b-4 border-r-4 mt-8"
+        [ngClass]="task.status == 'opened' ? 'border-blue-400' : task.status == 'pending' ? 'border-yellow-400' : task.status == 'inprogress' ? 'border-orange-400' : 'border-green-400'"
+      >
+        <div class="flex items-center justify-between gap-8 px-4 py-4">
+          <span class="text-xl font-medium">{{task.title}}</span>
+          <div class="flex items-center gap-3">
+            <button disabled class="text-orange-500 cursor-pointer hover:opacity-80 underline">Edit</button>
+            <button disabled class="text-red-500 cursor-pointer hover:opacity-80 underline">Delete</button>
+          </div>
+        </div>
+        <div class="bg-yellow-100 px-4 py-4">
+          <p>Description - {{task.desc}}</p>
+          <span>Due Date - {{formatDate(task.dueDate)}}</span>
+        </div>
+      </div>
+    </ng-container>
+    <p *ngIf="allTasks?.length == 0" class="text-red-500 text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">Task(s) Not Found</p>
+  </div>
+  <img *ngIf="loading" src="/assets/loading.gif" alt="loading..." class="loader"/>
+</div>

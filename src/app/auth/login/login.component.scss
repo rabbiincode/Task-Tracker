@@ -1,0 +1,176 @@
+.login{
+  position: relative;
+  min-height: 100vh;
+  padding: 5rem 1.5rem;
+}
+
+.logo{
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+}
+
+.login > span{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-style: oblique;
+  text-decoration: line-through;
+}
+
+.content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 600px;
+  padding: 1rem 1.5rem;
+}
+
+.content > form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field{
+  color: #000;
+}
+
+mat-icon{
+  font-size: 1.7rem;
+}
+
+input{
+  background: transparent;
+}
+
+.email{
+  margin-bottom: 3rem;
+}
+
+.recover{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.4rem;
+}
+
+.recover > span{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.recover > span > input{
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.reset{
+  cursor: pointer;
+}
+
+.content > form > button{
+  background: #000;
+  color: #fff;
+  height: 3.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  opacity: 0.8;
+  border-radius: 0.5rem;
+  padding: 0 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.content > form > button:hover{
+  opacity: 0.7;
+}
+
+.content > form > button:disabled{
+  opacity: 0.6;
+}
+
+.goggle{
+  background: #000;
+  color: #fff;
+  width: 100%;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  padding: 0 0.8rem;
+  margin: 2.5rem 0 0;
+}
+
+.goggle > img{
+  width: 2rem;
+  height: 2rem;
+}
+
+.password{
+  margin: 3rem 0;
+}
+
+.register{
+  width: fit-content;
+  margin: auto;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.register:hover{
+  opacity: 0.8;
+}
+
+mat-hint{
+  font-size: 0.8rem;
+}
+
+mat-hint, .mail{
+  opacity: 0.6;
+  color: #000;
+}
+
+.timer{
+  text-align: end;
+  margin-top: 1rem;
+}
+
+.token{
+  color: #8bbf8b;
+  cursor: pointer;
+}
+
+.mail, .resend{
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.resend > span{
+  color: #8bbf8b;
+  cursor: pointer;
+}
+
+.reset:hover, .token:hover, .resend > span:hover, input:disabled{
+  opacity: 0.8;
+}
+
+@media (max-width: 150px){
+  mat-icon{
+    display: none;
+  }
+}

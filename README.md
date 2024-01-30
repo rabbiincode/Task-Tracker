@@ -7,6 +7,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Task Tracker
 
 
+
+
 ## Tech Stack
 
 **Client:** Angular, Tailwind CSS, Angular Material
@@ -17,8 +19,9 @@ Features
 
 - User Registration and Login
 - Add, Edit, and Delete Tasks
-- Drag and drop to update task's progress
 - Fully Responsive in all devices
+- Drag and drop to update task's progress
+- Notifications on successful amd failed operations
 
 ## Documentation
 Project Link to be released soon or you can run the project locally for full interaction

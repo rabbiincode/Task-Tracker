@@ -1,0 +1,43 @@
+<div class="login">
+  <img src="/assets/logo.png" alt="logo" [routerLink]="['/']" class="logo"/>
+  <div class="content">
+    <form [formGroup]="registerForm" (submit)="registerUser()">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="me@mail.com">
+        <mat-icon matSuffix>mail</mat-icon>
+        <mat-error *ngIf="registerForm.value.email == ''">Email required</mat-error>
+        <mat-error *ngIf="registerForm.get('email')?.hasError('invalidEmail')">Email address invalid</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="password">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Password">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-hint>Must be at least 8 characters long, contain at least one upper and lowercase letters, special character and number.</mat-hint>
+        <mat-error *ngIf="registerForm.value.password == ''">Password required</mat-error>
+        <mat-error *ngIf="registerForm.get('password')?.hasError('invalidPassword')">Password invalid</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input formControlName="confirmPassword" matInput [type]="hide1 ? 'password' : 'text'" placeholder="Confirm Password">
+        <mat-icon matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="registerForm.value.password !== '' && registerForm.value.confirmPassword == ''">
+          Confirm password required
+        </mat-error>
+        <mat-error *ngIf="registerFormControl?.['confirmPassword']?.errors?.['passwordMatchError'] && registerForm.value.password !== '' && registerForm.value.confirmPassword !== ''">
+          Password does not match
+        </mat-error>
+      </mat-form-field>
+
+      <button type='submit' [disabled]="registerForm.invalid">
+        <span *ngIf="!loading">Register</span>
+        <span *ngIf="loading" class="load"></span>
+      </button>
+    </form>
+    <button (click)="registerWithGoggle()" class="goggle"><img src="/assets/goggle.png" alt="goggle"/> Continue with google</button>
+    <p [routerLink]="['/login']" class="register">Already have an account? Login</p>
+  </div>
+  <span>Rabbi</span>
+</div>

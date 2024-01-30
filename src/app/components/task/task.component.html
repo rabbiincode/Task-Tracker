@@ -1,7 +1,7 @@
-<div class="fixed h-screen top-0 right-0 left-0 p-6">
+<div class="fixed h-screen top-0 right-0 left-0 !px-6">
   <div class="fixed h-screen top-0 right-0 left-0 bg-slate-300/40 cursor-pointer p-6" (click)="toggleTask()"></div>
 
-  <form [formGroup]="taskForm" (submit)="select()" class="max-w-2xl w-full bg-slate-300 flex flex-col gap-8 rounded-lg z-10 p-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+  <form [formGroup]="taskForm" (submit)="select()" class="max-w-3xl w-[90%] bg-slate-300 flex flex-col gap-8 rounded-lg z-10 p-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
     <span *ngIf="choice == 'add'" class="text-green-400 text-center text-2xl font-medium">Create New Task</span>
     <span *ngIf="choice == 'edit'" class="text-orange-400 text-center text-2xl font-medium">Edit Task</span>
 
@@ -17,7 +17,12 @@
       <mat-error *ngIf="taskForm.value.desc == ''">Task description required</mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <div *ngIf="choice == 'edit'" class="text-xl font-medium">
+      Due Date: <span class="text-red-400 text-xl font-medium">{{formatDate(editTask.dueDate)}} - </span>
+      <span (click)="editDate = !editDate" class="text-orange-500 underline cursor-pointer hover:opacity-80">Edit</span>
+    </div>
+
+    <mat-form-field *ngIf="editDate">
       <mat-label>Select task due date</mat-label>
       <mat-hint>MM/DD/YYYY</mat-hint>
       <input formControlName="dueDate" matInput [matDatepicker]="picker">

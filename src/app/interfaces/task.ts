@@ -4,4 +4,6 @@ export interface Task{
   dueDate: Date;
   taskId: string;
   status: string;
+  username: string;
+  failed: boolean;
 }

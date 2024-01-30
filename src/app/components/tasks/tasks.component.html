@@ -1,0 +1,14 @@
+<ng-container>
+  <task-header (addTask)="addTask()"></task-header>
+  <task-all-tasks *ngIf="all"></task-all-tasks>
+
+  <div *ngIf="!all" class="relative min-h-[80vh] px-6 py-8">
+    <div *ngIf="!loading" class="absolute w-[90%] flex flex-col gap-4 text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <p class="text-green-500 text-3xl font-medium">No failed task(s)...you rock</p>
+      <button [routerLink]="'/'" class="text-center text-xl cursor-pointer">back</button>
+    </div>
+    <img *ngIf="loading" src="/assets/loading.gif" alt="loading..." class="loader"/>
+  </div>
+  <task-task *ngIf="add" [choice]="'add'" (toggle)="addTask()"></task-task>
+  <task-footer></task-footer>
+</ng-container>
