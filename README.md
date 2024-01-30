@@ -2,26 +2,50 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.9.
 
-## Development server
+# Project Title
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Task Tracker
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tech Stack
 
-## Build
+**Client:** Angular, Tailwind CSS, Angular Material
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+**Database:** Firebase
 
-## Running unit tests
+Features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- User Registration and Login
+- Add, Edit, and Delete Tasks
+- Drag and drop to update task's progress
+- Fully Responsive in all devices
 
-## Running end-to-end tests
+## Documentation
+Project Link to be released soon or you can run the project locally for full interaction
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Installation
+To Run The Project Locally -
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Your device should be compatible with Angular 17 and above
+
+Clone the project with the projects Github link - https://github.com/rabbiincode/Task-Tracker
+
+- Open your Terminal
+
+Run the following command -
+
+ - npm install - to install all project dependencies
+
+ - ng serve --o - to open the project on localhost
+
+## Authors
+- [@rabbiincode](https://github.com/rabbiincode)
+
+## Contributing
+
+Suggestions and Contributions are always welcomed!
+
+## 🔗 Links
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/successisaiah)
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://successisaiah.netlify.app/)

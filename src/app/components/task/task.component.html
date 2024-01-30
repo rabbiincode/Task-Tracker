@@ -1,0 +1,39 @@
+<div class="fixed h-screen top-0 right-0 left-0 p-6">
+  <div class="fixed h-screen top-0 right-0 left-0 bg-slate-300/40 cursor-pointer p-6" (click)="toggleTask()"></div>
+
+  <form [formGroup]="taskForm" (submit)="select()" class="max-w-2xl w-full bg-slate-300 flex flex-col gap-8 rounded-lg z-10 p-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <span *ngIf="choice == 'add'" class="text-green-400 text-center text-2xl font-medium">Create New Task</span>
+    <span *ngIf="choice == 'edit'" class="text-orange-400 text-center text-2xl font-medium">Edit Task</span>
+
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput placeholder="Enter task title">
+      <mat-error *ngIf="taskForm.value.title == ''">Task title required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea formControlName="desc" matInput placeholder="Enter task description" rows="3"></textarea>
+      <mat-error *ngIf="taskForm.value.desc == ''">Task description required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Select task due date</mat-label>
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <input formControlName="dueDate" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="taskForm.value.dueDate == ''">Task Due Date required</mat-error>
+      <mat-error *ngIf="formControls['dueDate'].hasError('invalidDate')">Invalid date</mat-error>
+    </mat-form-field>
+
+    <button *ngIf="choice == 'add'" type='submit' [disabled]="taskForm.invalid" class="bg-green-200 h-14 rounded-lg">
+      <span *ngIf="!loading">Add task</span>
+      <span *ngIf="loading" class="load"></span>
+    </button>
+    <button *ngIf="choice == 'edit'" type='submit' [disabled]="taskForm.value.title == editTask.title && taskForm.value.desc == editTask.desc && taskForm.value.dueDate == editTask.dueDate || taskForm.invalid" class="bg-green-200 h-14 rounded-lg">
+      <span *ngIf="!loading">Edit task</span>
+      <span *ngIf="loading" class="load"></span>
+    </button>
+  </form>
+</div>
