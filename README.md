@@ -4,9 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Project Title
 
-Task Tracker
-
-
+Task Tracker Application
 
 
 ## Tech Stack
@@ -24,8 +22,7 @@ Features
 - Notifications on successful amd failed operations
 
 ## Documentation
-Project Link to be released soon or you can run the project locally for full interaction
-
+Project Preview Link - https://tasktracker-topaz.vercel.app
 
 ## Installation
 To Run The Project Locally -
@@ -37,10 +34,13 @@ Clone the project with the projects Github link - https://github.com/rabbiincode
 - Open your Terminal
 
 Run the following command -
-
  - npm install - to install all project dependencies
 
- - ng serve --o - to open the project on localhost
+- ng serve --o - to open the project on localhost
+
+Login and test the application -
+- Username - johndoe@gmail.com
+- Password - 12345@Aa
 
 ## Authors
 - [@rabbiincode](https://github.com/rabbiincode)
